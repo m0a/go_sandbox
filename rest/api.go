@@ -140,6 +140,10 @@ func apiHandler(w http.ResponseWriter, r *http.Request) {
 	// req := Request(*r)
 	defer r.Body.Close()
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE")
+	w.Header().Set("Access-Control-Max-Age", "3600")
+	w.Header().Set("Access-Control-Allow-Headers", "x-requested-with")
 
 	pathTokens := pathTokens(r)
 	var s string
