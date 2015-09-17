@@ -37,12 +37,12 @@
   <template v-repeat='files' >
       <div v-if="isDir == true" class="col-lg-3 col-sm-4 col-6">
         <a v-on="click:nextLink(name)" title="{{name}}">
-          <img src="//placehold.it/600x350/?text={{name | short}}" class="thumbnail img-responsive">
+          <img src="//placehold.it/600x350/?text=Directory" class="thumbnail img-responsive">
         </a>
       </div>
       <div v-if="isDir == false" class="col-lg-3 col-sm-4 col-6">
         <a v-on="click:playFile(name)" title="{{name}}">
-          <img src="//placehold.it/600x350/?text={{name | short}}" class="thumbnail img-responsive">
+          <img src="//placehold.it/600x350/CB410B/ffffff?text=.mp4" class="thumbnail img-responsive">
         </a>
       </div>
   </template>
@@ -51,7 +51,8 @@
 
 
 <script id="playFileTemplate" type="text/template">
-  <div>
+  <div class="row">
+    <div class="col-md-12">
       <p>
         <a v-on="click:goBack()"> go back</a>
       </p>
@@ -62,8 +63,9 @@
 			<video id="example_video_1" class="video-js vjs-default-skin"
 				controls preload="auto" width="800" height="600"
 				data-setup='{}'>
-				<source src="/access/{{$route.query.file}}" type='video/mp4' />
+				<source src="{{srcFile()}}" type='video/mp4' />
 				<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
 			</video>
+    </div>
 	 </div>
 </script>

@@ -79,7 +79,11 @@ $(function(){
 
            this.$route.router.go(nextPath);
         },
-
+        srcFile:function() {
+          var path = "/access" + this.$route.query.file
+          console.log('srcFile='+path);
+          return path;
+        }
       }
   });
 

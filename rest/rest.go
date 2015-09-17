@@ -9,6 +9,7 @@ import (
 )
 
 const assetDir = "./assets/"
+const thumbnailDir = assetDir + "thumbnails/"
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {
 
@@ -25,6 +26,7 @@ func main() {
 	// http.HandleFunc("/goodbye", goodbyeHandler) // ハンドラを登録してウェブページを表示させる
 	http.Handle("/access/", http.StripPrefix("/access/", http.FileServer(http.Dir("/"))))
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir(assetDir))))
+	http.Handle("/thumbnails/", http.StripPrefix("/thumbnails/", http.FileServer(http.Dir(thumbnailDir))))
 	http.HandleFunc("/api/", apiHandler) // ハンドラを登録してウェブページを表示させる
 
 	http.HandleFunc("/", rootHandler)

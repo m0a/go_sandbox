@@ -112,7 +112,11 @@ func fileList(dir string) ([]FileListInfo, error) {
 		// realPath := "./" + finfo.Name()
 		// pp.Println(realPath)
 
-		files = append(files, fileinfo)
+		if fileinfo.Extension == ".mp4" || fileinfo.IsDir {
+			files = append(files, fileinfo)
+		} else {
+			pp.Println(fileinfo)
+		}
 
 	}
 	fileListInfo := []FileListInfo{FileListInfo{}}
