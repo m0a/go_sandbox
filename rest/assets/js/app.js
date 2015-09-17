@@ -53,7 +53,7 @@ $(function(){
           var that = this;
           $.ajax({
             type: 'GET',
-            url: 'http://localhost:3000/api/files?dir=' + dir,
+            url: '/api/files?dir=' + dir,
             dataType: 'json',
             success: function(json) {
               that.$data.title = json[0].path;
