@@ -12,6 +12,7 @@ var FileList = Vue.extend({
         backpath:'',
         files: [],
         searchText: '',
+        // backupSearchText:{},
       }
     },
     ready:function(){
@@ -22,9 +23,6 @@ var FileList = Vue.extend({
       } else {
         this.getJson(this.$route.query.dir);
       }
-
-
-      // console.log("outerter compiled.");
     },
     methods:{
       nextLink:function(name) {
@@ -41,7 +39,7 @@ var FileList = Vue.extend({
         console.log('inter backpath');
         var nextDir = this.$data.backpath;
         var nextPath = {path: '/filelist?dir=' + nextDir };
-        this.$set('searchText','');
+        // this.$set('searchText','');
         this.getJson(nextDir);
         this.$route.router.go(nextPath);
       },
@@ -89,7 +87,6 @@ var PlayFile = Vue.extend({
     }
 });
 
-// var App = Vue.extend({});
 
 Vue.filter('backpath',function(str){
   var s = str.replace(/\/[^\/]*$/,'');
@@ -98,26 +95,16 @@ Vue.filter('backpath',function(str){
 });
 
 Vue.filter('short',function(str){
-  var s = str.replace(/.*(.{30})$/,'$1');
+  var s = str.replace(/.*(.{45})$/,'$1');
   console.log(s);
   return s;
 });
 
 $(function(){
 
-
-
+  //Router設定
   var App =  Vue.extend({});
-
-  // router インスタンスを作成。
-  // ここでは追加的なオプションで渡すことができますが、今はシンプルに保っています
   var router = new VueRouter()
-
-  // いくつかの routes を定義します
-  // route 毎、コンポーネントにマップが必要です
-  // "component" は 事実上コンポーネントコンストラクタは Vue.extend() 経由で作成されるか、
-  // または適切なコンポーネントオプションオブジェクトでできます
-  // nested routes については後で話します
   router.map({
       '/': {
         component: FileList
@@ -128,10 +115,8 @@ $(function(){
       '/playfile': {
           component: PlayFile
       }
-  })
+  });
 
-  // 今 アプリケーションを開始することが出来ます！
-  // router は App のインスタンスを作成し、
-  // そして #app セレクタでマッチングした要素にマウントします
   router.start(App,'#app')
+
 });

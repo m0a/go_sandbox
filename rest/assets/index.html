@@ -12,18 +12,18 @@
     <script src="/assets/js/app.js"></script>
     <link href="//vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">
     <script src="//vjs.zencdn.net/4.12/video.js"></script>
+    <link rel="stylesheet" href="/assets/css/page.css" type="text/css">
 
   </head>
-  <body style="height: 100%">
-    <div class="container" id="app">
+  <body >
+    <div class="container" id="app" v-cloak>
       <router-view></router-view>
     </div>
   </body>
 </html>
 
 
-<script id="fileListTemplate" type="text/template">
-  <p>Current route params: {{$route.query | json}}</p>
+<script id="fileListTemplate" type="text/template" v-cloak>
   <h1>{{title | lowercase}}</h1>
   <div class="row">
     <input type="text" v-model="searchText">
@@ -38,14 +38,14 @@
       <div v-if="isDir == true" class="col-lg-3 col-sm-4 col-6">
         <a v-on="click:nextLink(name)" title="{{name}}">
           <img src="//placehold.it/600x350/?text=Directory" class="thumbnail img-responsive">
-          <div style="position:absolute; left: 25px; right: 25px; bottom: 30px; ">{{name}}</div>
+          <div class="ffff">{{name | short}}</div>
         </a>
 
       </div>
       <div v-if="isDir == false" class="col-lg-3 col-sm-4 col-6">
         <a v-on="click:playFile(name)" title="{{name}}">
           <img src="//placehold.it/600x350/CB410B/ffffff?text=.mp4" class="thumbnail img-responsive">
-          <div style="position:absolute; left: 25px; right: 25px; bottom: 30px; ">{{name}}</div>
+          <div class="ffff">{{name |short}}</div>
         </a>
       </div>
   </template>
@@ -53,7 +53,7 @@
 </script>
 
 
-<script id="playFileTemplate" type="text/template">
+<script id="playFileTemplate" type="text/template" v-cloak>
   <div class="row">
     <div class="col-md-12">
       <p>
