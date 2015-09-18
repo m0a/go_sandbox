@@ -45,7 +45,7 @@ var FileList = Vue.extend({
         this.getJson(nextDir);
         this.$route.router.go(nextPath);
       },
-      playFile(name){
+      playFile:function(name){
         console.log('inter playFile');
         var nextDir = this.$data.path + '/' + name;
         var nextPath = {path: '/playfile?file=' + nextDir };
