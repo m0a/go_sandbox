@@ -14,12 +14,8 @@
     <script src="//vjs.zencdn.net/4.12/video.js"></script>
 
   </head>
-  <body>
+  <body style="height: 100%">
     <div class="container" id="app">
-      <div class="row">
-
-      </div>
-
       <router-view></router-view>
     </div>
   </body>
@@ -31,18 +27,21 @@
   <h1>{{title | lowercase}}</h1>
     <div class="col-lg-3 col-sm-4 col-6">
       <a v-on="click:goBack()" title="{{name}}">
-        goBack
+        back
       </a>
     </div>
   <template v-repeat='files' >
       <div v-if="isDir == true" class="col-lg-3 col-sm-4 col-6">
         <a v-on="click:nextLink(name)" title="{{name}}">
           <img src="//placehold.it/600x350/?text=Directory" class="thumbnail img-responsive">
+          <div style="position:absolute; left: 25px; right: 25px; bottom: 30px; ">{{name}}</div>
         </a>
+
       </div>
       <div v-if="isDir == false" class="col-lg-3 col-sm-4 col-6">
         <a v-on="click:playFile(name)" title="{{name}}">
           <img src="//placehold.it/600x350/CB410B/ffffff?text=.mp4" class="thumbnail img-responsive">
+          <div style="position:absolute; left: 25px; right: 25px; bottom: 30px; ">{{name}}</div>
         </a>
       </div>
   </template>
@@ -54,14 +53,13 @@
   <div class="row">
     <div class="col-md-12">
       <p>
-        <a v-on="click:goBack()"> go back</a>
+        <a v-on="click:goBack()"> back</a>
       </p>
       <p>
         {{$route.query.file}}
       </p>
-
 			<video id="example_video_1" class="video-js vjs-default-skin"
-				controls preload="auto" width="800" height="600"
+				controls preload="auto" width="100%" height="100%"
 				data-setup='{}'>
 				<source src="{{srcFile()}}" type='video/mp4' />
 				<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
